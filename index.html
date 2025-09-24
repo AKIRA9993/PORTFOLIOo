@@ -3,825 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" type="image/jpg" href="https://i.pinimg.com/736x/b4/86/8e/b4868ec92446124793e96f1c310a2923.jpg" alt="favicon"/> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" type="image/jpg" href="https://i.pinimg.com/1200x/59/1b/98/591b986516affc15dade2863ab2555e8.jpg" />
   <title>Nourhan's Portfolio</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     :root {
-      --primary-color: #362f32;
-      --secondary-color: #5d4459;
-      --accent-color: #716361;
-      --accent-2: #b8b3b1;
-      --accent-3: #586144;
-      --accent-4: #4a3d42;
-      --text-dark: #f1f5f9;
-      --text-light: #cbd5e1;
-      --white: #ffffff;
-      --dark-bg: #1a1a1a;
-      --card-bg: #2a2a2a;
-      --nav-bg: #362f32;
-      --shadow-light: 0 4px 6px -1px rgba(54, 47, 50, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-      --shadow-medium: 0 10px 15px -3px rgba(54, 47, 50, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
-      --shadow-large: 0 20px 25px -5px rgba(54, 47, 50, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-      --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-      --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-2) 100%);
-      --gradient-warm: linear-gradient(135deg, var(--accent-3) 0%, var(--accent-4) 100%);
-      --gradient-cool: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-2) 100%);
-      --gradient-earth: linear-gradient(135deg, var(--accent-4) 0%, var(--accent-3) 100%);
-      --gradient-stone: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+      --primary-color: #9A3F3F;
+      --secondary-color: #C1856D;
+      --accent-color: #E6CFA9;
+      --accent-2: #FBF9D1;
+      --text-dark: #222;
+      --text-light: #555;
+      --white: #fff;
     }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.7;
-      background: var(--dark-bg);
+      background: var(--white);
       color: var(--text-dark);
       scroll-behavior: smooth;
+      position: relative;
     }
 
-    /* Header */
     header {
-      background: var(--gradient-primary);
+      background: var(--primary-color);
       color: var(--white);
       text-align: center;
-      padding: 120px 20px 80px 20px;
-      position: relative;
-      overflow: hidden;
+      padding: 120px 20px 80px;
     }
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="none"><path d="M0,0 Q250,50 500,0 T1000,0 V100 H0 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-      background-size: cover;
-      animation: wave 10s ease-in-out infinite;
+    nav.navbar {
+      background: var(--secondary-color) !important;
     }
 
-    @keyframes wave {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(-50px); }
+    nav .nav-link {
+      color: var(--white) !important;
     }
 
-    header h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 1s ease-out;
+    nav .nav-link.active {
+      color: var(--accent-2) !important;
+      font-weight: bold;
     }
 
-    header p {
-      font-size: 1.3rem;
-      opacity: 0.95;
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 1s ease-out 0.2s both;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Navigation */
-    nav {
-      background: var(--nav-bg);
-      box-shadow: var(--shadow-light);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(184, 179, 177, 0.2);
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .nav-logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent-2);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .nav-logo:hover {
-      color: var(--white);
-      transform: scale(1.05);
-    }
-
-    /* Hamburger Menu - CSS Only */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 12px;
-      z-index: 1002;
-      position: relative;
-      background: rgba(54, 47, 50, 0.1);
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .hamburger:hover {
-      background: rgba(184, 179, 177, 0.2);
-    }
-
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: var(--text-dark);
-      margin: 3px 0;
-      transition: all 0.3s ease;
-      border-radius: 2px;
-    }
-
-    /* Hidden checkbox for hamburger toggle */
-    #hamburger-toggle {
-      display: none;
-    }
-
-    /* Hamburger active state */
-    #hamburger-toggle:checked + .hamburger span:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-      background: var(--primary-color);
-    }
-
-    #hamburger-toggle:checked + .hamburger span:nth-child(2) {
-      opacity: 0;
-    }
-
-    #hamburger-toggle:checked + .hamburger span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-      background: var(--primary-color);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 0;
-      margin: 0;
-      transition: all 0.3s ease;
-    }
-
-    nav ul li {
-      margin: 0;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: var(--text-dark);
-      padding: 20px 25px;
-      display: block;
-      font-weight: 500;
-      position: relative;
-      transition: all 0.3s ease;
-      border-radius: 8px;
-      margin: 5px;
-    }
-
-      nav ul li a:hover {
-      color: var(--accent-2);
-      background: linear-gradient(135deg, rgba(54, 47, 50, 0.15) 0%, rgba(93, 68, 89, 0.15) 100%);
-      transform: translateY(-2px);
-    }
-
-    nav ul li a::after {
-      content: '';
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--gradient-primary);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    nav ul li a:hover::after {
-      width: 60%;
-    }
-
-    /* Overlay */
-    .nav-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-    /* Sections */
     section {
       padding: 60px 20px;
       margin: 40px auto;
-      background: var(--card-bg);
+      background: var(--accent-2);
       width: 95%;
       max-width: 1000px;
       border-radius: 20px;
-      box-shadow: var(--shadow-medium);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      animation: fadeInUp 0.8s ease-out;
-      border: 1px solid rgba(184, 179, 177, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       scroll-margin-top: 80px;
     }
 
-    section:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-large);
-    }
-
     section h2 {
-      color: var(--text-dark);
-      margin-bottom: 30px;
-      font-size: 2.5rem;
-      font-weight: 600;
-      position: relative;
       text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary-color);
     }
 
-    section h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 4px;
-      background: var(--gradient-accent);
-      border-radius: 2px;
-    }
-
-    /* About Section */
-    #about {
-      text-align: center;
-    }
-
-    #about p {
-      font-size: 1.2rem;
-      color: var(--text-light);
-      margin-bottom: 30px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    #about .links {
-      margin: 30px 0;
-    }
-
-    #about .links a {
-      color: var(--accent-2);
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 500;
-      padding: 10px 20px;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      display: inline-block;
-      border: 2px solid var(--accent-2);
-    }
-
-    #about .links a:hover {
-      background: var(--gradient-primary);
-      color: var(--white);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-medium);
-    }
-
-    #about img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      margin-top: 30px;
-      object-fit: cover;
-      border: 6px solid var(--white);
-      box-shadow: var(--shadow-large);
-      transition: all 0.3s ease;
-    }
-
-    #about img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Skills Section */
-    #skills ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      list-style: none;
-    }
-
-    #skills li {
-      color: var(--white);
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      cursor: default;
-    }
-
-    #skills li:nth-child(1) { background: var(--gradient-primary); }
-    #skills li:nth-child(2) { background: var(--gradient-accent); }
-    #skills li:nth-child(3) { background: var(--gradient-cool); }
-    #skills li:nth-child(4) { background: var(--gradient-stone); }
-    #skills li:nth-child(5) { background: var(--gradient-warm); }
-    #skills li:nth-child(6) { background: var(--gradient-earth); }
-    #skills li:nth-child(7) { background: linear-gradient(135deg, var(--accent-2) 0%, var(--secondary-color) 100%); }
-    #skills li:nth-child(8) { background: linear-gradient(135deg, var(--accent-3) 0%, var(--primary-color) 100%); }
-
-    /* Projects Section */
     .card {
-      background: linear-gradient(135deg, rgba(42, 42, 42, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
-      padding: 30px;
-      margin: 25px 0;
-      border-radius: 15px;
-      border-left: 5px solid var(--accent-2);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(184, 179, 177, 0.2);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(54, 47, 50, 0.05), transparent);
-      transition: left 0.6s ease;
-    }
-
-    .card:hover::before {
-      left: 100%;
-    }
-
-    .card:hover {
-      transform: translateX(8px);
-      background: linear-gradient(135deg, rgba(42, 42, 42, 0.95) 0%, rgba(54, 47, 50, 0.08) 100%);
-      color: var(--text-dark);
-      box-shadow: var(--shadow-large);
-      border-left-color: var(--accent-2);
-      border-color: rgba(54, 47, 50, 0.3);
+      background: var(--accent-color);
+      border: none;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px 0;
     }
 
     .card h3 {
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-      color: inherit;
-      transition: color 0.3s ease;
-    }
-
-    .card:hover h3 {
-      color: var(--accent-2);
+      color: var(--primary-color);
     }
 
     .card a {
-      color: var(--accent-2);
+      color: var(--primary-color);
       text-decoration: none;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 20px;
-      border: 2px solid var(--accent-2);
-      transition: all 0.3s ease;
-      display: inline-block;
+      font-weight: bold;
     }
 
-    .card:hover a {
-      color: var(--white);
-      border-color: var(--secondary-color);
-      background: var(--secondary-color);
-      box-shadow: 0 4px 8px rgba(93, 68, 89, 0.4);
-    }
-
-    /* Education and Experience */
-    #education p, #experience p {
-      font-size: 1.2rem;
-      color: var(--text-light);
-      text-align: center;
-      padding: 20px;
-      background: rgba(26, 26, 26, 0.5);
-      border-radius: 10px;
-      border-left: 4px solid var(--accent-3);
-      border: 1px solid rgba(184, 179, 177, 0.2);
-    }
-
-    /* Contact Section */
-    #contact p {
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
-
-    #contact a {
-      color: var(--accent-2);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    #contact a:hover {
-      color: var(--secondary-color);
-    }
-
-    /* Footer */
     footer {
       text-align: center;
       padding: 30px;
-      background: var(--gradient-primary);
+      background: var(--secondary-color);
       color: var(--white);
-      margin-top: 50px;
-    }
-
-    /* Mobile Responsive Design */
-    @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
-
-      nav ul {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 75%;
-        max-width: 300px;
-        height: 100vh;
-        background: var(--nav-bg);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: left 0.4s ease;
-        box-shadow: var(--shadow-large);
-        border-right: 1px solid rgba(54, 47, 50, 0.3);
-        z-index: 1001;
-        overflow-y: auto;
-        padding: 20px 0;
-      }
-
-      #hamburger-toggle:checked ~ ul {
-        left: 0;
-      }
-
-      #hamburger-toggle:checked ~ .nav-overlay {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      nav ul li {
-        margin: 15px 0;
-        width: 90%;
-        opacity: 0;
-        transform: translateX(-20px);
-        animation: slideInLeft 0.4s ease forwards;
-      }
-
-      #hamburger-toggle:checked ~ ul li:nth-child(1) { animation-delay: 0.1s; }
-      #hamburger-toggle:checked ~ ul li:nth-child(2) { animation-delay: 0.2s; }
-      #hamburger-toggle:checked ~ ul li:nth-child(3) { animation-delay: 0.3s; }
-      #hamburger-toggle:checked ~ ul li:nth-child(4) { animation-delay: 0.4s; }
-      #hamburger-toggle:checked ~ ul li:nth-child(5) { animation-delay: 0.5s; }
-      #hamburger-toggle:checked ~ ul li:nth-child(6) { animation-delay: 0.6s; }
-      #hamburger-toggle:checked ~ ul li:nth-child(7) { animation-delay: 0.7s; }
-
-      @keyframes slideInLeft {
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      nav ul li a {
-        padding: 15px 25px;
-        font-size: 1.3rem;
-        width: 100%;
-        text-align: center;
-        border-radius: 8px;
-        display: block;
-        background: rgba(54, 47, 50, 0.3);
-        margin: 0;
-        border: 1px solid rgba(184, 179, 177, 0.2);
-      }
-
-      nav ul li a:hover {
-        background: var(--gradient-primary);
-        color: var(--white);
-        transform: translateY(0) scale(1.02);
-      }
-
-      header {
-        padding: 120px 20px 60px 20px;
-      }
-
-      header h1 {
-        font-size: 2.5rem;
-      }
-      
-      header p {
-        font-size: 1.1rem;
-      }
-      
-      section {
-        width: 95%;
-        padding: 40px 20px;
-        margin: 20px auto;
-        scroll-margin-top: 80px;
-      }
-      
-      section h2 {
-        font-size: 2rem;
-      }
-      
-      #about img {
-        width: 150px;
-        height: 150px;
-      }
-      
-      #skills ul {
-        grid-template-columns: 1fr;
-      }
-      
-      .card {
-        padding: 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav ul {
-        width: 80%;
-      }
-
-      header {
-        padding: 110px 20px 50px 20px;
-      }
-      
-      header h1 {
-        font-size: 2rem;
-      }
-      
-      nav ul li a {
-        padding: 15px 20px;
-      }
-      
-      section {
-        padding: 30px 15px;
-        border-radius: 15px;
-        scroll-margin-top: 80px;
-      }
-      
-      section h2 {
-        font-size: 1.8rem;
-      }
-      
-      #about .links a {
-        margin: 5px;
-        padding: 8px 16px;
-      }
-      
-      #about img {
-        width: 120px;
-        height: 120px;
-      }
-    }
-
-    /* Loading animation for sections */
-    @keyframes slideInFromBottom {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    section {
-      animation: slideInFromBottom 0.6s ease-out;
-    }
-
-    section:nth-child(even) {
-      animation-delay: 0.1s;
-    }
-
-    section:nth-child(odd) {
-      animation-delay: 0.2s;
     }
   </style>
 </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="80" tabindex="0">
 
   <header id="hero">
     <h1>Nourhan Fathallah</h1>
     <p>Electrical & Communication Engineer</p>
-    <p>Frontend developer</p>
+    <p>Frontend Developer</p>
   </header>
 
-  <nav>
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">NF</a>
-      
-      <!-- Pure CSS hamburger toggle -->
-      <input type="checkbox" id="hamburger-toggle">
-      <label for="hamburger-toggle" class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-      
-      <ul id="nav-menu">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      
-      <div class="nav-overlay"></div>
+  <!-- Bootstrap Navbar with Scrollspy -->
+  <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand text-white fw-bold" href="#hero">NF</a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
+  <!-- Sections -->
   <section id="about">
     <h2>About Me</h2>
-    <p>I'm a passionate engineer with a love for web development and creation. I enjoy building innovative solutions and exploring new technologies to create meaningful digital experiences.</p>
-    <div class="links">
-      <a href="https://www.facebook.com/nourhan.mohamed.574293" target="_blank">Facebook</a>
-      <a href="https://github.com/AKIRA9993" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/nourhan-mohamed-fathallah-b677372ba/" target="_blank">LinkedIn</a>
-    </div>
-    <img src="https://i.pinimg.com/1200x/63/6d/d9/636dd967b906427884491046f1748d07.jpg" alt="Nour's photo">
+    <p>I'm a passionate engineer with a love for web development and creation.</p>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
     <ul>
-      <li>HTML5 Projects</li>
-      <li>CSS3</li>
-      <li>Bootstrap skills</li>
-      <li>Responsive designs</li>
+      <li>HTML5, CSS3, Bootstrap</li>
       <li>JavaScript</li>
-      <li>Project creations</li>
-      <li>UI/UX background</li>
-      <li>Vue js work frame experience</li>
+      <li>Responsive Design</li>
+      <li>Vue.js</li>
     </ul>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
     <div class="card">
-      <h3>book-author SPA</h3>
-      <p>A comprehensive system for managing movie databases with advanced search and filtering capabilities.</p>
-      <a href="https://github.com/AKIRA9993/Book-Author-SPA.git" target="_blank">View Project</a>
-    </div>
-    <div class="card">
-      <h3>Book API App</h3>
-      <p>RESTful API application for book management with full CRUD operations and user authentication.</p>
-      <a href="https://github.com/your-username/book-api-app" target="_blank">View Project</a>
+      <h3>Daniels Portfolio Website</h3>
+      <p>Creative personal portfolio website showcasing projects and skills.</p>
+      <a href="https://akira9993.github.io/daniels/" target="_blank">View Project</a>
     </div>
     <div class="card">
       <h3>Mealify Restaurant Website</h3>
-      <p>Modern restaurant landing page with responsive design, featuring menu displays, chef profiles, and interactive elements built with HTML5 and CSS3.</p>
+      <p>Modern responsive restaurant landing page.</p>
       <a href="https://akira9993.github.io/Mealify/" target="_blank">View Project</a>
     </div>
     <div class="card">
       <h3>Fokir Portfolio Template</h3>
-      <p>Professional portfolio website template with smooth animations, responsive layout, and modern UI design showcasing web development skills.</p>
+      <p>Professional portfolio template with smooth animations.</p>
       <a href="https://akira9993.github.io/fokir/" target="_blank">View Project</a>
-    </div>
-    <div class="card">
-      <h3>DevFolio Personal Portfolio</h3>
-      <p>Creative developer portfolio website with interactive components, project showcases, and contact forms built using modern frontend technologies.</p>
-      <a href="https://akira9993.github.io/DEVFOLIOO/" target="_blank">View Project</a>
     </div>
   </section>
 
   <section id="education">
     <h2>Education</h2>
-    <p>Communication Engineering – Class of 2026<br>
-    Focused on signal processing, telecommunications, and software development</p>
+    <p>Communication Engineering – Class of 2026</p>
   </section>
 
   <section id="experience">
     <h2>Experience</h2>
-    <p>Software Development Internships at ITI<br>
-    Gained hands-on experience in full-stack development and project management</p>
+    <p>Internships at ITI – Full-stack development</p>
   </section>
 
   <section id="contact">
     <h2>Contact Me</h2>
-    <p><strong>Name:</strong> Nourhan Fathallah</p>
     <p><strong>Email:</strong> <a href="mailto:nourhanfathallah012@gmail.com">nourhanfathallah012@gmail.com</a></p>
-
   </section>
 
   <footer>
-    <p>&copy; 2025 Nourhan Fathallah. Crafted with passion and precision.</p>
+    <p>&copy; 2025 Nourhan Fathallah</p>
   </footer>
 
-  <script>
-    // Mobile navigation functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const hamburgerToggle = document.getElementById('hamburger-toggle');
-      const navOverlay = document.querySelector('.nav-overlay');
-      const navLinks = document.querySelectorAll('#nav-menu a');
-      
-      // Ensure elements exist before adding event listeners
-      if (!hamburgerToggle || !navOverlay) return;
-      
-      // Close menu when overlay is clicked
-      navOverlay.addEventListener('click', function() {
-        hamburgerToggle.checked = false;
-      });
-      
-      // Close menu when a nav link is clicked
-      navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          hamburgerToggle.checked = false;
-        });
-      });
-      
-      // Close menu when pressing escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && hamburgerToggle.checked) {
-          hamburgerToggle.checked = false;
-        }
-      });
-      
-      // Prevent body scroll when menu is open
-      hamburgerToggle.addEventListener('change', function() {
-        if (this.checked) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = '';
-        }
-      });
-
-      // Smooth scrolling for navigation links
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if (href.startsWith('#')) {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-              const navHeight = document.querySelector('nav').offsetHeight;
-              const targetPosition = target.offsetTop - navHeight - 20;
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          }
-        });
-      });
-    });
-
-    // Add loading animation delay for sections
-    window.addEventListener('load', function() {
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section, index) => {
-        section.style.animationDelay = `${index * 0.1}s`;
-      });
-    });
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
